@@ -1,0 +1,13 @@
+<div class="flex flex-row py-4 px-2 items-center border-b-2 hover:border-l-4 border-blue-400" *ngIf="user">
+    <div class="w-1/4">
+      <img
+        [src]="user.photo_profile"
+        class="object-cover h-12 w-12 rounded-full"
+        alt=""
+      />
+    </div>
+    <div class="w-full">
+      <div class="text-lg font-semibold">Everest Trip 2021</div>
+      <span class="text-gray-500">Hi {{ user.username}}, Welcome</span>
+    </div>
+</div>
