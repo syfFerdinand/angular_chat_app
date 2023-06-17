@@ -1,12 +1,12 @@
 export interface User{
     id: number;
     username: string;
-    email: string|null;
-    tel: number|null;
-    photo_profile:string|null;
-    online: boolean|null;
-    created_at: Date|null;
-    updated_at: Date|null;
+    email: string | undefined;
+    tel: number | undefined;
+    photo_profile: string | undefined;
+    online: boolean | undefined;
+    created_at: Date | undefined;
+    updated_at: Date | undefined;
 }
 
 export const users = [

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { users } from 'src/models/user.model';
+import { User } from 'src/models/user.model';
 
 @Component({
   selector: 'app-user-list',
@@ -7,5 +7,10 @@ import { users } from 'src/models/user.model';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent {
-  users = [...users]
+  
+  users: User[]
+
+  constructor(){
+    this.users =[]
+  }
 }
