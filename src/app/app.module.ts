@@ -11,6 +11,7 @@ import { MessageListComponent } from './components/message-list/message-list.com
 import { MessagesViewComponent } from './components/messages-view/messages-view.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { UserDetailComponent } from './components/user-detail/user-detail.compon
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
