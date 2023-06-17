@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Message } from 'src/app/models/message.model';
+import { Message } from 'src/models/message.model';
 
 @Component({
   selector: 'app-message-card',
