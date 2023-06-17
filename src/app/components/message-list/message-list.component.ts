@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Message, messages } from 'src/app/models/message.model';
+import { Message, messages } from 'src/models/message.model';
 
 @Component({
   selector: 'app-message-list',

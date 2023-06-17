@@ -4,3 +4,5 @@ export interface Message {
     created_at: string,
     is_sender: boolean
 }
+
+export const messages =[]
