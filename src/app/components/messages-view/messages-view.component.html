@@ -4,13 +4,14 @@
     <div class="flex flex-col mt-5">
       <app-message-list [messages]="messages"></app-message-list>
     </div>
-    <div class="py-5">
+    <form class="flex py-5">
       <input
         class="w-full bg-gray-300 py-5 px-3 rounded-xl"
-        type="text"
+        type="text" [(ngModel)]="message" name="message"
         placeholder="type your message here..."
       />
-    </div>
+      <button (click)="sendMessage()"> Envoyer</button>
+    </form>
   </div>
   <div *ngIf="userDetailIsVisible" >
     <app-user-detail></app-user-detail>

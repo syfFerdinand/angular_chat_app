@@ -13,6 +13,8 @@ export class MessagesViewComponent {
   user: User | undefined
   userDetailIsVisible = false
   messages!: Message[]
+  message = ""
+
   constructor(
     private messageService: MessageService
   ){}
@@ -26,6 +28,15 @@ export class MessagesViewComponent {
         error=> {
           console.error("something is wrong");
           
+        }
+      )
+  }
+
+  sendMessage(){
+    if(this.message != "")
+      this.messageService.store(this.message, this.user!.id, 1).subscribe(
+        data=>{
+          // this.messageService.
         }
       )
   }

@@ -14,6 +14,7 @@ import { UserDetailComponent } from './components/user-detail/user-detail.compon
 import { MessagesLatestComponent } from './components/messages-latest/messages-latest.component';
 import { UserMessageCardComponent } from './components/user-message-card/user-message-card.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
