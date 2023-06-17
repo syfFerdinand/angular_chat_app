@@ -11,6 +11,8 @@ import { MessageListComponent } from './components/message-list/message-list.com
 import { MessagesViewComponent } from './components/messages-view/messages-view.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
+import { MessagesLatestComponent } from './components/messages-latest/messages-latest.component';
+import { UserMessageCardComponent } from './components/user-message-card/user-message-card.component';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -23,7 +25,9 @@ import { HttpClientModule } from '@angular/common/http';
     MessageListComponent,
     MessagesViewComponent,
     UserListComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    MessagesLatestComponent,
+    UserMessageCardComponent
   ],
   imports: [
     BrowserModule,

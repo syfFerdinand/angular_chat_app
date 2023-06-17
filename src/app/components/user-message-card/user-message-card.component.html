@@ -1,0 +1,13 @@
+<div class="flex flex-row py-4 px-2 items-center border-b-2 cursor-pointer hover:border-l-4 border-blue-400" *ngIf="message">
+    <div class="w-1/4">
+      <img
+        [src]="message.created_by.photo_profile??'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJG2EGatn7jlmjEq8MA6qX0kLv3EX0TyFZr4a7avA&s'"
+        class="object-cover h-12 w-12 rounded-full"
+        alt=""
+      />
+    </div>
+    <div class="w-full">
+      <div class="text-lg font-semibold">{{ message.created_by.username}}</div>
+      <span class="text-gray-500"> {{ message.content}}</span>
+    </div>
+</div>
