@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { MessageLatest } from 'src/models/message-latest.model';
 import { Message } from 'src/models/message.model';
 
 @Injectable({
@@ -17,9 +18,9 @@ export class MessageService {
   ) { }
 
   //return list of latest messages about an user  
-  getAll(id: number): Observable<Message[]> {
+  getAll(id: number): Observable<MessageLatest[]> {
     console.log("get messages");
-    return this.http.get<Message[]>(environment.apiUrl+this.uriParent+id+'/'+this.uri+'latest').pipe(
+    return this.http.get<MessageLatest[]>(environment.apiUrl+this.uriParent+id+'/'+this.uri+'latest').pipe(
       catchError(error => {
         console.log("error when calling get latest user message api");
         console.error(error);
