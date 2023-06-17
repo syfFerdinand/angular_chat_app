@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { users } from 'src/models/user.model';
+import { User, users } from 'src/models/user.model';
 
 @Component({
   selector: 'app-home',
@@ -7,5 +7,9 @@ import { users } from 'src/models/user.model';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  users = [...users]
+  currentUser: User | undefined
+  
+  onUserSelected(user: User) {
+    this.currentUser = user;
+  }
 }

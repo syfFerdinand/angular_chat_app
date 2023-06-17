@@ -7,5 +7,5 @@ import { Message } from 'src/models/message.model';
   styleUrls: ['./message-card.component.css']
 })
 export class MessageCardComponent {
-  @Input() message: Message | undefined
+  @Input() message!: Message
 }

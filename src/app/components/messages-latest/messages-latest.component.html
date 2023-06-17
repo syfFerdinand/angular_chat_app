@@ -11,7 +11,7 @@
     </div>
     
     <div *ngFor="let message of messages">
-      <app-user-message-card [message]="message"></app-user-message-card>
+      <app-user-message-card  (click)="onUserSelected(message.created_by)" [message]="message"></app-user-message-card>
     </div>
     <!-- end message list -->
   </div>

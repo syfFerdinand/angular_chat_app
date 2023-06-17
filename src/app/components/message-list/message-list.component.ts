@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Message, messages } from 'src/models/message.model';
 
 @Component({
@@ -7,5 +7,6 @@ import { Message, messages } from 'src/models/message.model';
   styleUrls: ['./message-list.component.css']
 })
 export class MessageListComponent {
-  messages: Message[] = [...messages]
+  @Input()
+  messages!: Message[] 
 }

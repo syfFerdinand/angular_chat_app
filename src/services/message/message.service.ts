@@ -30,8 +30,8 @@ export class MessageService {
   }
 
   //return list of messages between two user
-  get(id: number,with_id: number){
-    return this.http.get<Message>(environment.apiUrl+this.uriParent+id+'/'+this.uri+with_id).pipe(
+  get(id: number,with_id: number): Observable<Message[]> {
+    return this.http.get<Message[]>(environment.apiUrl+this.uriParent+id+'/'+this.uri+with_id).pipe(
       catchError(error => {
         console.log("error when calling get a message api");
         console.error(error);

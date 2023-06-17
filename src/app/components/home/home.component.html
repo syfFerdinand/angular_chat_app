@@ -15,11 +15,10 @@
   <!-- Chatting -->
   <div class="flex flex-row justify-between bg-white">
     <!-- chat list -->
-    <app-messages-latest></app-messages-latest>
+    <app-messages-latest (userSelected)="onUserSelected($event)"></app-messages-latest>
     <!-- end chat list -->
     <!-- message -->
-    <app-messages-view></app-messages-view>
+    <app-messages-view [user]="currentUser" class="w-full"></app-messages-view>
     <!-- end message -->
-    <app-user-detail></app-user-detail>
   </div>
 </div>

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter,Output } from '@angular/core';
 import { MessageLatest } from 'src/models/message-latest.model';
+import { User } from 'src/models/user.model';
 import { MessageService } from 'src/services/message/message.service';
 
 @Component({
@@ -9,6 +10,7 @@ import { MessageService } from 'src/services/message/message.service';
 })
 export class MessagesLatestComponent {
   messages!: MessageLatest[]
+  @Output() userSelected: EventEmitter<User> = new EventEmitter<User>();
 
   constructor(
     private messageService: MessageService
@@ -23,5 +25,9 @@ export class MessagesLatestComponent {
         console.error("error when initiliaze latest message");
       }
     )
+  }
+
+  onUserSelected(user: User) {
+    this.userSelected.emit(user);
   }
 }
