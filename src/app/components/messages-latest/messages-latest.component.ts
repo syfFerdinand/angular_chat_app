@@ -1,4 +1,4 @@
-import { Component, EventEmitter,Output } from '@angular/core';
+import { Component, EventEmitter,Input,Output } from '@angular/core';
 import { MessageLatest } from 'src/models/message-latest.model';
 import { User } from 'src/models/user.model';
 import { MessageService } from 'src/services/message/message.service';
@@ -11,7 +11,8 @@ import { MessageService } from 'src/services/message/message.service';
 export class MessagesLatestComponent {
   messages!: MessageLatest[]
   @Output() userSelected: EventEmitter<User> = new EventEmitter<User>();
-
+  @Input() height: string =''
+  
   constructor(
     private messageService: MessageService
   ){}

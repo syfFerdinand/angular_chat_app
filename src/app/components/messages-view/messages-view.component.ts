@@ -11,6 +11,8 @@ import { MessageService } from 'src/services/message/message.service';
 export class MessagesViewComponent {
   @Input()
   user: User | undefined
+  @Input()
+  listHeight: string =""
   userDetailIsVisible = false
   messages!: Message[]
   message = ""

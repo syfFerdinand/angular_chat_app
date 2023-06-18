@@ -1,5 +1,5 @@
-<div class="flex flex-col mt-5" *ngFor="let message of messages">
-      <app-message-card
-        [message]="message"
-      ></app-message-card>
-</div>
+<section class="flex mt-5 flex-col overflow-y-auto">
+  <div  *ngFor="let message of messages">
+      <app-message-card  [message]="message" ></app-message-card>
+  </div>
+</section>

@@ -1,20 +1,20 @@
 <!-- message -->
-<div class="flex flex-row">
-  <div class="w-full px-5 flex flex-col justify-between">
-    <div class="flex flex-col mt-5">
+<section class="flex flex-row">
+  <div *ngIf="user"  class="w-full px-5 h-full flex flex-col mb-5">
+    <div class=" overflow-y-auto"  [style.height]="listHeight">
       <app-message-list [messages]="messages"></app-message-list>
     </div>
-    <form class="flex py-5">
+    <form class="p-3 h-20 flex flex-row">
       <input
         class="w-full bg-gray-300 py-5 px-3 rounded-xl"
         type="text" [(ngModel)]="message" name="message"
         placeholder="type your message here..."
       />
-      <button (click)="sendMessage()"> Envoyer</button>
+      <button (click)="sendMessage()">Envoyer</button>
     </form>
   </div>
-  <div *ngIf="userDetailIsVisible" >
+  <div *ngIf="userDetailIsVisible">
     <app-user-detail></app-user-detail>
   </div>
-</div>
+</section>
 <!-- end message -->
