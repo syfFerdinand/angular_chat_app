@@ -28,8 +28,8 @@ export class UserService {
   }
 
   store(username: string,password:string): Observable<HttpResponse<any>> {
-
-    return this.http.post<any>(environment.apiUrl+this.uri, {username,password}, { observe: 'response' }).pipe(
+    let is_active=true
+    return this.http.post<any>(environment.apiUrl+this.uri+'create', {username,password, is_active}, { observe: 'response' }).pipe(
       catchError(error => {
         console.log("error when calling create user api");
         console.error(error);
