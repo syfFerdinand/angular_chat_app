@@ -17,7 +17,7 @@ export class MessagesLatestComponent {
     private messageService: MessageService
   ){}
 
-  ngOnInit(): void {
+  ngOnChanges() {
     this.messageService.getAll(1).subscribe(
       data=>{
         this.messages = data
@@ -26,6 +26,17 @@ export class MessagesLatestComponent {
         console.error("error when initiliaze latest message");
       }
     )
+    setInterval(() => {
+      this.messageService.getAll(1).subscribe(
+        data=>{
+          if (data.length > this.messages.length)
+            this.messages = data
+        },
+        error=>{
+          console.error("error when initiliaze latest message");
+        }
+      )
+    }, 5000);
   }
 
   onUserSelected(user: User) {

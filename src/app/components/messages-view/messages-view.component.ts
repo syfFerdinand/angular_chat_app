@@ -12,33 +12,59 @@ export class MessagesViewComponent {
   @Input()
   user: User | undefined
   @Input()
-  listHeight: string =""
+  listHeight: string = ""
   userDetailIsVisible = false
-  messages!: Message[]
+  messages: Message[] = []
   message = ""
 
   constructor(
     private messageService: MessageService
-  ){}
+  ) { }
 
-  ngOnChanges(){
-    if(this.user != undefined)
-      this.messageService.get(1,this.user.id).subscribe(
-        data=>{
-          this.messages = data
+  ngOnChanges() {
+    if (this.user != undefined)
+      this.messageService.get(this.user.id).subscribe(
+        data => {
+          // Update the messages array with the new messages
+          this.messages = data;
         },
-        error=> {
+        error => {
           console.error("something is wrong");
-          
+          console.error('Error fetching latest messages:', error);
         }
       )
+      console.log("on change!")
+    // Set up polling to fetch new messages every X seconds
+    setInterval(() => {
+      if (this.user != undefined)
+        this.messageService.get(this.user.id).subscribe(
+          data => {
+            if (data.length > this.messages.length) {
+              // Update the messages array with the new messages
+              this.messages = data;
+            }
+          },
+          error => {
+            console.error("something is wrong");
+            console.error('Error fetching latest messages:', error);
+          }
+        )
+    }, 5000);
   }
 
-  sendMessage(){
-    if(this.message != "")
-      this.messageService.store(this.message, this.user!.id, 1).subscribe(
-        data=>{
-          // this.messageService.
+  sendMessage() {
+    if (this.message != "")
+      this.messageService.store(this.message, this.user!.id).subscribe(
+        data => {
+          this.messageService.get(this.user!.id).subscribe(
+            data => {
+              this.messages = data
+            },
+            error => {
+              console.error("something is wrong");
+            }
+          )
+          this.message = ''
         }
       )
   }
