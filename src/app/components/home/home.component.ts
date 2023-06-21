@@ -1,4 +1,5 @@
 import { Component, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 import { User, users } from 'src/models/user.model';
 
 @Component({
@@ -10,6 +11,14 @@ export class HomeComponent {
   currentUser: User | undefined
   windowHeight: string = '100vh'; // Hauteur initiale de la section
   listHeight: string = ''
+
+  constructor(
+    private router: Router
+  ){
+    
+    if(!localStorage.getItem('token'))
+      router.navigate(['/login']);
+  }
 
   ngOnInit(){
     this.updateWindowHeight();

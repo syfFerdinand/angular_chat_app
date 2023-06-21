@@ -1,4 +1,4 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -12,15 +12,25 @@ import { Message } from 'src/models/message.model';
 export class MessageService {
   uriParent = "users/"
   uri = "messages/"
+  options = {}
 
   constructor(
     private http: HttpClient
-  ) { }
+  ) { 
+      
+    const accessToken = localStorage.getItem('token');
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${accessToken}`
+    });
+
+    this.options = { headers: headers };
+  }
 
   //return list of latest messages about an user  
   getAll(id: number): Observable<MessageLatest[]> {
     console.log("get messages");
-    return this.http.get<MessageLatest[]>(environment.apiUrl+this.uriParent+id+'/'+this.uri+'latest').pipe(
+    return this.http.get<MessageLatest[]>(environment.apiUrl+this.uriParent+this.uri+'latest', this.options).pipe(
       catchError(error => {
         console.log("error when calling get latest user message api");
         console.error(error);
@@ -30,8 +40,8 @@ export class MessageService {
   }
 
   //return list of messages between two user
-  get(id: number,with_id: number): Observable<Message[]> {
-    return this.http.get<Message[]>(environment.apiUrl+this.uriParent+id+'/'+this.uri+with_id).pipe(
+  get(with_id: number): Observable<Message[]> {
+    return this.http.get<Message[]>(environment.apiUrl+this.uriParent+this.uri+with_id, this.options).pipe(
       catchError(error => {
         console.log("error when calling get a message api");
         console.error(error);
@@ -40,21 +50,22 @@ export class MessageService {
     );
   }
 
-  //
-  store(content: string,send_at:number,send_by: number ): Observable<HttpResponse<Message>> {
+  //send a message
+  store(content: string,send_at:number ): Observable<HttpResponse<Message>> {
 
-    return this.http.post<Message>(environment.apiUrl+this.uri, {content,send_at,send_by}, { observe: 'response' }).pipe(
+    return this.http.post<Message>( environment.apiUrl+this.uri, {content,send_at}, this.options).pipe(
       catchError(error => {
         console.log("error when calling create message api");
         console.error(error);
-        return of<HttpResponse<any>>(error); 
+        return of<any>(error); 
       }),
       
     );
   }
 
+  //update user message
   update(message: Message){
-    return this.http.put(environment.apiUrl+this.uri+message.id, { message}, { observe: 'response' }).pipe(
+    return this.http.put(environment.apiUrl+this.uri+message.id, { message}, this.options).pipe(
       catchError(error => {
         console.log("error when calling update message api");
         console.error(error);
@@ -63,8 +74,9 @@ export class MessageService {
     );
   }
 
+  //delete message
   delete(id: number){
-    return this.http.delete(environment.apiUrl+this.uri+id).pipe(
+    return this.http.delete(environment.apiUrl+this.uri+id, this.options).pipe(
       catchError(error => {
         console.log("error when calling delete message api");
         console.error(error);
